@@ -8,11 +8,9 @@ function run(event) {
     newInput = newInput.replace('-', '')
     newInput = newInput.trim()
     event.preventDefault()
-    console.log(newInput)
 
     axios.get('https://viacep.com.br/ws/' + newInput + '/json/').then(function(response) {
         var result = response.data
-        console.log(result)
 
         if (result.erro) {
            throw new Error('CEP Inválido')
@@ -24,7 +22,6 @@ function run(event) {
 
     })
     .catch(function(error) {
-        // console.log("Não foi possível encontrar o endereço.", error)
         content.innerHTML = ''
         createLine('CEP inválido')
     }) 
